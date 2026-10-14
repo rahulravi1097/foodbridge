@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero rounded-4 p-4 p-lg-5 mb-5"><div class="row align-items-center g-4"><div class="col-lg-7">
+<span class="eyebrow">SDG 2 · ZERO HUNGER &nbsp; / &nbsp; SDG 12 · RESPONSIBLE CONSUMPTION</span>
+<h1 class="display-4 fw-bold mt-3">Good food deserves<br><span class="text-lime">another destination.</span></h1>
+<p class="lead mt-3 mb-4">FoodBridge helps restaurants, hostels, caterers, and events connect surplus edible food with NGOs and community partners before it goes to waste.</p>
+<div class="d-flex flex-wrap gap-2"><a class="btn btn-lime btn-lg" href="{{ url_for('donations') }}">Find available food</a><a class="btn btn-outline-light btn-lg" href="{{ url_for('register') }}">Become a partner</a></div></div>
+<div class="col-lg-5"><div class="hero-illustration"><div class="plate">🍲</div><div class="arrow">→</div><div class="heart">♡</div><p class="mb-0 fw-semibold">From surplus to shared support</p></div></div></div></section>
+<div class="row g-3 mb-5"><div class="col-6 col-lg-3"><div class="stat-card"><span>Available listings</span><strong>{{ counts.available }}</strong></div></div><div class="col-6 col-lg-3"><div class="stat-card"><span>Delivered donations</span><strong>{{ counts.delivered }}</strong></div></div><div class="col-6 col-lg-3"><div class="stat-card"><span>Registered donors</span><strong>{{ counts.donors }}</strong></div></div><div class="col-6 col-lg-3"><div class="stat-card"><span>Approved partners</span><strong>{{ counts.partners }}</strong></div></div></div>
+<section class="mb-5"><div class="section-heading"><div><span class="eyebrow">LATEST LISTINGS</span><h2 class="h2 mt-2">Food that needs a destination</h2></div><a href="{{ url_for('donations') }}" class="text-success fw-semibold">View all →</a></div>
+<div class="row g-3 mt-1">{% for d in latest %}<div class="col-md-4"><div class="food-card h-100"><div class="food-icon">🥗</div><span class="badge text-bg-success-subtle">{{ d.food_type }}</span><h3 class="h5 mt-3">{{ d.food_name }}</h3><p class="text-secondary mb-1">{{ '%g' % d.quantity }} {{ d.quantity_unit }} · {{ d.city }}</p><p class="small text-secondary">Deadline: {{ d.expiry_time.strftime('%d %b %Y, %I:%M %p') }}</p><a class="btn btn-outline-success btn-sm mt-2" href="{{ url_for('donations') }}">View listing</a></div></div>{% else %}<div class="col-12"><div class="empty-state">No food listings yet. Donors can register and publish the first listing.</div></div>{% endfor %}</div></section>
+<section class="impact-band rounded-4 p-4 p-lg-5"><div class="row align-items-center g-3"><div class="col-lg-8"><h2 class="h3">Small actions. Measurable impact.</h2><p class="mb-0">A shared workflow makes donations easier to discover, claim, collect, and track.</p></div><div class="col-lg-4 text-lg-end"><a href="{{ url_for('about') }}" class="btn btn-dark">Explore the mission</a></div></div></section>
+{% endblock %}
