@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+<div class="auth-wrap"><div class="auth-card"><span class="eyebrow">WELCOME BACK</span><h1 class="h2 mt-2">Log in to FoodBridge</h1><p class="text-secondary">Continue coordinating food donations.</p><form method="post" novalidate>{{ form.hidden_tag() }}{% for field in [form.email, form.password] %}<div class="mb-3"><label class="form-label" for="{{ field.id }}">{{ field.label.text }}</label>{{ field(class="form-control" + (" is-invalid" if field.errors else "")) }}{% for error in field.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}</div>{% endfor %}<button class="btn btn-success w-100 btn-lg mt-2">Log in</button></form><p class="mt-3 mb-0">New to FoodBridge? <a href="{{ url_for('register') }}">Create an account</a></p></div></div>
+{% endblock %}
