@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Feedback{% endblock %}
+{% block content %}
+<div class="auth-wrap"><div class="auth-card"><span class="eyebrow">CLOSE THE LOOP</span><h1 class="h2 mt-2">Donation feedback</h1><p class="text-secondary">{{ claim.donation.food_name }} · {{ claim.donation.city }}</p>
+<form method="post">{{ form.hidden_tag() }}<div class="mb-3"><label class="form-label">{{ form.rating.label.text }}</label>{{ form.rating(class="form-select") }}</div><div class="mb-3"><label class="form-label">{{ form.comment.label.text }}</label>{{ form.comment(class="form-control", rows="4", placeholder="Share a short note (optional)") }}</div><button class="btn btn-success w-100">Submit feedback</button></form></div></div>
+{% endblock %}
